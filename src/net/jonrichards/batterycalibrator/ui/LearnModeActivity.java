@@ -383,7 +383,7 @@ public class LearnModeActivity extends Activity {
 			double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
 			
 			//If remaining capacity is low, but remaining voltage is not low, and learn mode has not come on, bump capacity
-			if(capacity < 70 && realtime_volt - empty_volt >= 0.3 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+			if(capacity < 150 && realtime_volt - empty_volt >= 0.3 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
 				my_battery_info.setACR();
 			}
 		} catch(Exception e) {
