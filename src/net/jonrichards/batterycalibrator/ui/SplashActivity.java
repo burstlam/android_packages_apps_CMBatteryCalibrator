@@ -18,7 +18,7 @@ public class SplashActivity extends Activity {
 	
 	//Instance Variables
 	
-    private final int SPLASH_DISPLAY_LENGHT = 1000;
+    private final int SPLASH_DISPLAY_LENGHT = 500;
 
 	//Public Methods
 	

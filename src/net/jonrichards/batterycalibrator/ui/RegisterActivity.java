@@ -5,8 +5,7 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
-import java.io.FileInputStream;
-
+import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -16,20 +15,21 @@ import android.os.PowerManager.WakeLock;
 import android.widget.TextView;
 
 /**
- * A class for displaying information from the log.
+ * A class for displaying battery register information.
  * @author Jon Richards
  * @author Roger Podacter
  */
-public class LogActivity extends Activity {
+public class RegisterActivity extends Activity {
 	
 	//Instance Variables
 	
 	//Handler for updating the UI
 	private final Handler my_handler = new Handler();
 	
-	private TextView my_log_contents;
+	private TextView my_register_contents;
 	private PowerManager my_power_manager;
 	private WakeLock my_wake_lock;
+	private DS2784Battery my_battery_info;
 	
 	/**
 	 * The polling frequency in milliseconds.
@@ -43,14 +43,14 @@ public class LogActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loglayout);
-        setTitle("Battery Calibrator Log");
+        setContentView(R.layout.registerslayout);
+        setTitle("Registers");
         
         my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
         my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
+        my_battery_info  = new DS2784Battery();
         
-        //Added raw dumpreg to registers tab
-        my_log_contents = (TextView)findViewById(R.id.widget1);
+        my_register_contents = (TextView)findViewById(R.id.widget1);
         
         //Initial poll when activity is first created
         my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
@@ -91,7 +91,8 @@ public class LogActivity extends Activity {
 	 * Sets the UI text.
 	 */
 	private void setUIText() {
-		my_log_contents.setText(readLog());
+		my_register_contents.setText(my_battery_info.getDumpRegister());
+		
 	}
 	
 	/**
@@ -103,31 +104,6 @@ public class LogActivity extends Activity {
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
 	    }
 	};
-	
-	/**
-	 * Returns the contents of the log file.
-	 * @return The contents of the log file.
-	 */
-	private String readLog() {
-		String log_contents = "";
-		
-		try {
-			StringBuffer string_buffer = new StringBuffer();
-			int character;
-			FileInputStream file_input_stream = openFileInput(BatteryApp.LOG_FILE);
-			while( (character = file_input_stream.read()) != -1) {
-				string_buffer.append((char)character);
-			}
-			file_input_stream.close();
-			
-			log_contents = string_buffer.toString();
-		} catch(Exception e) {
-			
-		}
-		
-	
-		
-		return log_contents;
-	}
+
 }
-//End of class LogActivity
+//End of class RegisterActivity

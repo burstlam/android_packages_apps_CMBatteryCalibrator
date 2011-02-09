@@ -299,6 +299,17 @@ public class DS2784Battery {
 	public void setACR() {
 		runSystemCommandAsRoot("echo 0x10 02 > " + SET_REG);
 	}
+	
+	/**
+	 * Sets the value to the given register.
+	 * @param the_register The register to set the value to.
+	 * @param the_value The value to set.
+	 */
+	public void setReg(String the_register, String the_value) {
+		if(the_register.length() == 2 && the_value.length() == 2) {
+			runSystemCommandAsRoot("echo " + the_register + " " + the_value + " > " + SET_REG);
+		}
+	}
 
 	//Private Methods	
 

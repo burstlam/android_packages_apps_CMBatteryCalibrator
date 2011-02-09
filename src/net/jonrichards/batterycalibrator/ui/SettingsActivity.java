@@ -80,17 +80,26 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 	
 	/**
+	 * Returns whether advanced options are enabled or not.
+	 * @param context
+	 * @return Whether advanced options are enabled or not.
+	 */
+	public static boolean getEnableAdvancedOptions(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("advanced_options", false);
+	}
+	
+	/**
 	 * Called when this activity is resumed.
 	 */
 	@Override
     public void onResume() {
+        super.onResume();
 		if(LearnModeActivity.LEARN_MODE && SettingsActivity.getEnableScreenOn(getBaseContext())) {
 			if(!my_wake_lock.isHeld()) {
 				my_wake_lock.acquire();
 			}
 		}
 
-        super.onResume();
     }
 
 	/**
@@ -98,11 +107,11 @@ public class SettingsActivity extends PreferenceActivity {
 	 */
 	@Override
     public void onPause() {
+        super.onPause();
 		if(my_wake_lock.isHeld()) {
 			my_wake_lock.release();
 		}
 		
-        super.onPause();
     }
 	
 	/**
@@ -115,7 +124,10 @@ public class SettingsActivity extends PreferenceActivity {
 			//Request SU ability if ACR adjustment is being turned on
 			if(PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getBoolean("ACR_adjustment", true)) {
 				ShellCommand shell_command = new ShellCommand();
-				shell_command.canSU();
+				
+				if(!shell_command.canSU()) {
+					//Uncheck the check box
+				}
 			}
 		}
 

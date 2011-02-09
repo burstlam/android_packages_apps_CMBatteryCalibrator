@@ -20,4 +20,8 @@
         android:title="@string/ACR_adjustment_title" 
         android:summary="@string/ACR_adjustment_summary"
         android:defaultValue="false" />
+    <CheckBoxPreference android:key="advanced_options"
+        android:title="@string/advanced_options_title" 
+        android:summary="@string/advanced_options_summary"
+        android:defaultValue="false" />
 </PreferenceScreen>

@@ -12,9 +12,12 @@
     <item android:id="@+id/settings"
         android:title="Settings"
         android:icon="@drawable/ic_menu_preferences" />
-    <item android:id="@+id/log"
+	<item android:id="@+id/log"
         android:title="Log"
         android:icon="@drawable/ic_menu_compose" />
+    <item android:id="@+id/registers"
+        android:title="Register"
+        android:icon="@drawable/registers_grey_icon" />
     <item android:id="@+id/exit"
         android:title="Exit"
         android:icon="@android:drawable/ic_menu_close_clear_cancel" />

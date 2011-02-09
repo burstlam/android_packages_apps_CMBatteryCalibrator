@@ -24,7 +24,7 @@ public class LoggingService extends Service {
 	//Static Variables
 	
 	private static final int INTERVAL = 30000;
-	private static final int LOG_LENGTH = 100;
+	private static final int LOG_LENGTH = 60;
 	
 	//Instance Variables
 	
@@ -47,8 +47,8 @@ public class LoggingService extends Service {
 	 */
 	@Override
 	public void onDestroy() {
-		stopService();
 		super.onDestroy();
+		stopService();
 	}
 	
 	/**
@@ -84,6 +84,8 @@ public class LoggingService extends Service {
 	private void stopService() {
 		if (my_timer != null){
 			my_timer.cancel();
+			my_timer.purge();
+			my_timer = null;
 		}
 	}
 	

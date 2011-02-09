@@ -62,13 +62,13 @@ public class AboutActivity extends Activity {
 	 */
 	@Override
     public void onResume() {
+        super.onResume();
 		if(LearnModeActivity.LEARN_MODE && SettingsActivity.getEnableScreenOn(getBaseContext())) {
 			if(!my_wake_lock.isHeld()) {
 				my_wake_lock.acquire();
 			}
 		}
 
-        super.onResume();
     }
 
 	/**
@@ -76,11 +76,11 @@ public class AboutActivity extends Activity {
 	 */
 	@Override
     public void onPause() {
+        super.onPause();
 		if(my_wake_lock.isHeld()) {
 			my_wake_lock.release();
 		}
 
-        super.onPause();
     }
 }
 //End of class AboutActivity

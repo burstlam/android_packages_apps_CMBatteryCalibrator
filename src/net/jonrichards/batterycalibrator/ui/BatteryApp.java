@@ -44,8 +44,9 @@ public class BatteryApp extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		
 	    super.onCreate(savedInstanceState);
-		startService(new Intent(this, LoggingService.class));
 	    setContentView(R.layout.main);
+	    
+	    startService(new Intent(this, LoggingService.class));
 	    
 	    my_resources = getResources();
 	    my_tab_host = getTabHost();
@@ -76,8 +77,8 @@ public class BatteryApp extends TabActivity {
 	
 	@Override
 	public void onDestroy() {
-		stopService(new Intent(this, LoggingService.class));
 		super.onDestroy();
+		stopService(new Intent(this, LoggingService.class));
 	}
 	
 }

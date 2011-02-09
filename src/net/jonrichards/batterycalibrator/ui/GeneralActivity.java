@@ -123,11 +123,14 @@ public class GeneralActivity extends Activity {
                 startActivity(myIntent);
 	            break;
 	        case R.id.settings:
-	        	startActivity(new Intent(this, SettingsActivity.class));                
+	        	startActivity(new Intent(this, SettingsActivity.class));
 	            break;
 	        case R.id.log:
 	        	startActivity(new Intent(this, LogActivity.class));
-	        	break;
+	            break;
+	        case R.id.registers:
+	        	startActivity(new Intent(this, RegisterActivity.class));
+	            break;
 	        case R.id.exit:
 	        	finish();
 	        	break;
@@ -142,6 +145,7 @@ public class GeneralActivity extends Activity {
 	 */
 	@Override
     public void onResume() {
+        super.onResume();
 		if(LearnModeActivity.LEARN_MODE && SettingsActivity.getEnableScreenOn(getBaseContext())) {
 			if(!my_wake_lock.isHeld()) {
 				my_wake_lock.acquire();
@@ -157,7 +161,6 @@ public class GeneralActivity extends Activity {
 		 *variables when they change, or less often.
 		 */
         //setUIText();
-        super.onResume();
     }
 
 	/**
@@ -165,12 +168,12 @@ public class GeneralActivity extends Activity {
 	 */
 	@Override
     public void onPause() {
+        super.onPause();
 		if(my_wake_lock.isHeld()) {
 			my_wake_lock.release();
 		}
 		
 		my_handler.removeCallbacks(mUpdateUITimerTask);
-        super.onPause();
     }
 	
 	//Private Methods
