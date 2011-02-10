@@ -10,12 +10,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -78,6 +82,8 @@ public class LearnModeActivity extends Activity {
 	
 	private PowerManager my_power_manager;
 	private WakeLock my_wake_lock;
+	private LocationManager my_location_manager;
+  	private LocationListener my_location_listener;
 	
 	private DS2784Battery my_battery_info;
 
@@ -94,6 +100,14 @@ public class LearnModeActivity extends Activity {
         setContentView(R.layout.learnmodelayout);
         
         my_battery_info = new DS2784Battery();
+        
+        my_location_manager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+        my_location_listener = new LocationListener() {
+        	public void onLocationChanged(Location location) {}
+        	public void onStatusChanged(String provider, int status, Bundle extras) {}
+        	public void onProviderEnabled(String provider) {}
+        	public void onProviderDisabled(String provider) {}
+        };
         
         my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
         my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
@@ -174,6 +188,9 @@ public class LearnModeActivity extends Activity {
 	    super.onPause();
 		if(my_wake_lock.isHeld()) {
 			my_wake_lock.release();
+		}
+		if(SettingsActivity.getEnableGPSPolling(getBaseContext())) {
+			my_location_manager.removeUpdates(my_location_listener);
 		}
 		my_handler.removeCallbacks(mUpdateUITimerTask);
     }
@@ -343,7 +360,8 @@ public class LearnModeActivity extends Activity {
 	    	if(SettingsActivity.getEnableACRAdjustment(getBaseContext()) && LEARN_MODE) {
 	    		checkACR();
 	    	}
-	    	setUIText();	    	
+	    	setUIText();
+	    	learnPrepHelp();
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
 	    }
 	};
@@ -369,9 +387,26 @@ public class LearnModeActivity extends Activity {
 					my_wake_lock.acquire();
 				}
 			}
+			if(SettingsActivity.getEnableGPSPolling(getBaseContext())) {
+				// Register the listener with the Location Manager to receive location updates
+				my_location_manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, my_location_listener);
+			}
 		} else {
+			//Turn off wake lock
 			if(my_wake_lock.isHeld()) {
 				my_wake_lock.release();
+			}
+			//Turn off GPS polling
+			if(SettingsActivity.getEnableGPSPolling(getBaseContext())) {
+				my_location_manager.removeUpdates(my_location_listener);
+			}
+			//Enable airplane mode
+			if(SettingsActivity.getAirplaneMode(getBaseContext())) {
+				boolean isEnabled = Settings.System.getInt(getBaseContext().getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0) == 1;
+				Settings.System.putInt(getBaseContext().getContentResolver(), Settings.System.AIRPLANE_MODE_ON, isEnabled ? 0 : 1);
+				Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+				intent.putExtra("state", !isEnabled);
+				sendBroadcast(intent);
 			}
 		}
 	}

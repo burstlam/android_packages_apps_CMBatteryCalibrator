@@ -7,10 +7,14 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-<!--<CheckBoxPreference android:key="gps_polling"
+	<CheckBoxPreference android:key="gps_polling"
         android:title="@string/gps_polling_title"        
         android:summary="@string/gps_polling_summary"
-        android:defaultValue="false" /> -->
+        android:defaultValue="false" />
+    <CheckBoxPreference android:key="airplane_mode"
+        android:title="@string/airplane_mode_title"        
+        android:summary="@string/airplane_mode_summary"
+        android:defaultValue="false" />
     <CheckBoxPreference android:key="wake_lock"
         android:title="@string/wake_lock_title"
         android:summaryOn="@string/screen_on_summary"

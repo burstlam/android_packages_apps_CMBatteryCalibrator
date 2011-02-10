@@ -62,6 +62,15 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 	
 	/**
+	 * Returns whether airplane mode should be enabled or not when learn mode is detected.
+	 * @param context
+	 * @return Whether airplane mode should be enabled or not when learn mode is detected.
+	 */
+	public static boolean getAirplaneMode(Context context) {
+	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("airplane_mode", false);
+	}
+	
+	/**
 	 * Returns whether screen always on should be enabled or not during learn prep mode.
 	 * @param context
 	 * @return Whether screen always on should be enabled or not during learn prep mode.
@@ -126,7 +135,7 @@ public class SettingsActivity extends PreferenceActivity {
 				ShellCommand shell_command = new ShellCommand();
 				
 				if(!shell_command.canSU()) {
-					//Uncheck the check box
+					preference.setEnabled(false);
 				}
 			}
 		}

@@ -44,5 +44,10 @@ public class SplashActivity extends Activity {
 		}, SPLASH_DISPLAY_LENGHT);
 	}
 	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+	}
+	
 }
 //End of class SplashActivity

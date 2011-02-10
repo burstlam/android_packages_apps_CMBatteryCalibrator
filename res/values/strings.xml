@@ -8,7 +8,7 @@
 -->
 <resources>
     <string name="app_name">Battery Calibrator</string>
-    <string name="app_version">v1.2.0</string>
+    <string name="app_version">v1.3.0</string>
     <string name="about">About</string>
     <string name="status_title">Status Register</string>    
     <string name="tech_help">Technical Info</string>
@@ -107,6 +107,13 @@
 	<string name="greaterthan_popup_title">GREATER THAN occurred</string>
 	
 	<string name="ok">OK</string>
+	
+	<string name="gps_polling_summary">During learn detect this option allows the GPS to be
+	polled to increase battery drain. Only applies on LearnMode tab.</string>
+	<string name="gps_polling_title">GPS Polling On/Off</string>
+	
+	<string name="airplane_mode_summary">Turns on airplane mode automatically when learn mode is detected.</string>
+	<string name="airplane_mode_title">Airplane Mode On/Off</string>
 	
 	<string name="screen_on_summary">Screen will stay on during learn detect mode.</string>
 	<string name="screen_off_summary">Screen will turn off normally during learn detect.</string>
