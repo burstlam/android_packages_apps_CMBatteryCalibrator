@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.cyanogenmod.batterymonitor"
+      android:versionCode="1"
+      android:versionName="1.0">
+        <uses-permission android:name="android.permission.DEVICE_POWER" />
+        <uses-permission android:name="android.permission.BATTERY_STATS"/>
+        <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"/>
+        <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+        <uses-permission android:name="android.permission.REVOKE_PERMISSIONS" />
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".activities.BatteryMonitor"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEVELOPMENT_PREFERENCE" />
+            </intent-filter>
+        </activity>
+    </application>
+    <uses-sdk android:minSdkVersion="4" />
+</manifest> 
