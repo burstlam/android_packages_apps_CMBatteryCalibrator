@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import com.android.internal.app.IBatteryStats;
 
-public class BatteryMonitor extends Activity implements OnClickListener{
+public class BatteryMonitor extends Activity implements OnClickListener {
     private Intent intent;
     private TextView mStatus;
     private TextView mPower;
