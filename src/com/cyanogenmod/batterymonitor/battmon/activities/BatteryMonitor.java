@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import com.android.internal.app.IBatteryStats;
 
-public class BatteryMonitor extends Activity implements OnClickListener{
+public class BatteryMonitor extends Activity implements OnClickListener {
     private Intent intent;
     private TextView mStatus;
     private TextView mPower;
@@ -72,6 +72,7 @@ public class BatteryMonitor extends Activity implements OnClickListener{
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            final CMDProcessor cmd = new CMDProcessor();
             String action = intent.getAction();
             if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
                 int plugType = intent.getIntExtra("plugged", 0);
@@ -100,6 +101,7 @@ public class BatteryMonitor extends Activity implements OnClickListener{
                     statusString = getString(R.string.battery_info_status_not_charging);
                 } else if (status == BatteryManager.BATTERY_STATUS_FULL) {
                     statusString = getString(R.string.battery_info_status_full);
+                    cmd.su.runWaitFor("busybox rm /data/system/batterystats.bin");
                 } else {
                     statusString = getString(R.string.battery_info_status_unknown);
                 }
