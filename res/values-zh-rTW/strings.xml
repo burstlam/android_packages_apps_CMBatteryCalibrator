@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="battery_title">電池監控及校準</string>
+	<string name="app_name">電池校準</string>
+	<string name="battery_calibrate">立即執行校準</string>
+
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_label">電池狀況:</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_power_label">外接電源中:</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_scale_label">電量比例:</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_level_label">電量水平:</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_health_label">電池健康狀況:</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_technology_label">電池技術:</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_voltage_label">電壓:</string>
+    <!-- Battery Info screen. Units shown after a value.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_voltage_units">mV</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_temperature_label">電池溫度:</string>
+    <!-- Battery Info screen. Units shown after a value.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_temperature_units">\u00B0 C</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_uptime">自上一次啟動操作時間:</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_awake_battery">喚醒時間(使用電池):</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_awake_plugged">喚醒時間(使用外接電源):</string>
+    <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_screen_on">亮屏時間:</string>
+
+
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_unknown">不明</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_charging">充電中</string>
+    <!-- Battery Info screen. Units shown after a value.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_charging_ac">(AC)</string>
+    <!-- Battery Info screen. Units shown after a value.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_charging_usb">(USB)</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_discharging">放電中</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_not_charging">非充電中</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_status_full">全滿</string>
+
+    <!-- Battery Info screen. Units shown after a value.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_power_unplugged">不插電</string>
+    <string name="battery_info_power_ac">AC</string>
+    <string name="battery_info_power_usb">USB</string>
+    <string name="battery_info_power_ac_usb">AC+USB</string>
+    <string name="battery_info_power_unknown">不明</string>
+
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_health_unknown">不明</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_health_good">良好</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_health_overheat">過熱</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_health_dead">危險:請立即更換電池</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_health_over_voltage">電壓過高</string>
+    <!-- Battery Info screen. Value for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
+    <string name="battery_info_health_unspecified_failure">未知錯誤</string>
+</resources>
+
